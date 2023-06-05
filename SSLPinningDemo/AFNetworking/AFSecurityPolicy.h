@@ -1,30 +1,23 @@
-// AFSecurityPolicy.h
-// Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+
+/* AFNetworking关于https证书校验的逻辑，主要在源代码AFSecurityPolicy中实现。 */
 
 #import <Foundation/Foundation.h>
 #import <Security/Security.h>
 
+/// AFNetworking提供了三个不同的认证模式
 typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
+    /* 代表无条件信任服务器的证书，这个模式表示不做SSL pinning，只跟浏览器一样在系统的信任机构列表里验证服务端返回的证书。
+       若证书是信任机构签发的就会通过，若是自己服务器生成的证书，这里是不会通过的。*/
     AFSSLPinningModeNone,
+    
+    /* 代表会对服务器返回的证书中的PublicKey进行验证，客户端要有服务端的证书拷贝，验证时只验证证书里的公钥，不验证证书的有效期等信息。
+       只要公钥是正确的，就能保证通信不会被窃听，因为中间人没有私钥，无法解开通过公钥加密的数据。 */
     AFSSLPinningModePublicKey,
+    
+    /* 代表会对服务器返回的证书同本地证书全部进行校验，需要客户端保存有服务端的证书拷贝，这里验证分两步，
+       第一步验证证书的域名/有效期等信息，第二步是对比服务端返回的证书跟客户端返回的是否一致。
+       AFSSLPinningModeCertificate缺点：客户端内置证书有有效期，证书有效期过后，需要强制升级客户端
+       发行APP比较麻烦，每次证书需要打包在APP中，服务器证书到期后则要重新内置证书后打包发行*/
     AFSSLPinningModeCertificate,
 };
 
@@ -52,14 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, nullable) NSSet <NSData *> *pinnedCertificates;
 
-/**
- Whether or not to trust servers with an invalid or expired SSL certificates. Defaults to `NO`.
- */
+/** Whether or not to trust servers with an invalid or expired SSL certificates. Defaults to `NO`.
+    是否允许无效证书（也就是自建的证书），默认为NO*/
 @property (nonatomic, assign) BOOL allowInvalidCertificates;
 
-/**
- Whether or not to validate the domain name in the certificate's CN field. Defaults to `YES`.
- */
+/** Whether or not to validate the domain name in the certificate's CN field. Defaults to `YES`.
+    是否需要验证域名，默认为YES */
 @property (nonatomic, assign) BOOL validatesDomainName;
 
 ///-----------------------------------------

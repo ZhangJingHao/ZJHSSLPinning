@@ -40,6 +40,7 @@ _out:
 }
 #endif
 
+/// 判断两个公钥是否相同
 static BOOL AFSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
 #if TARGET_OS_IOS || TARGET_OS_WATCH || TARGET_OS_TV
     return [(__bridge id)key1 isEqual:(__bridge id)key2];
@@ -48,6 +49,7 @@ static BOOL AFSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
 #endif
 }
 
+/// 获取证书公钥
 static id AFPublicKeyForCertificate(NSData *certificate) {
     id allowedPublicKey = nil;
     SecCertificateRef allowedCertificate;
@@ -80,6 +82,7 @@ _out:
     return allowedPublicKey;
 }
 
+/// 校验证书
 static BOOL AFServerTrustIsValid(SecTrustRef serverTrust) {
     BOOL isValid = NO;
     SecTrustResultType result;
@@ -91,6 +94,7 @@ _out:
     return isValid;
 }
 
+/// 得到访问域名的证书链上的各个证书信息
 static NSArray * AFCertificateTrustChainForServerTrust(SecTrustRef serverTrust) {
     CFIndex certificateCount = SecTrustGetCertificateCount(serverTrust);
     NSMutableArray *trustChain = [NSMutableArray arrayWithCapacity:(NSUInteger)certificateCount];
@@ -103,6 +107,7 @@ static NSArray * AFCertificateTrustChainForServerTrust(SecTrustRef serverTrust) 
     return [NSArray arrayWithArray:trustChain];
 }
 
+/// 从serverTrust中取出服务器端传过来的所有可用的证书，并依次得到相应的公钥
 static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
     SecPolicyRef policy = SecPolicyCreateBasicX509();
     CFIndex certificateCount = SecTrustGetCertificateCount(serverTrust);
@@ -146,6 +151,7 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
 
 @implementation AFSecurityPolicy
 
+/// 读取bundle中的证书
 + (NSSet *)certificatesInBundle:(NSBundle *)bundle {
     NSArray *paths = [bundle pathsForResourcesOfType:@"cer" inDirectory:@"."];
 
@@ -158,6 +164,7 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
     return [NSSet setWithSet:certificates];
 }
 
+/// 获取工程中默认证书
 + (NSSet *)defaultPinnedCertificates {
     static NSSet *_defaultPinnedCertificates = nil;
     static dispatch_once_t onceToken;
@@ -176,11 +183,14 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
     return securityPolicy;
 }
 
+// 初始化
 + (instancetype)policyWithPinningMode:(AFSSLPinningMode)pinningMode {
     return [self policyWithPinningMode:pinningMode withPinnedCertificates:[self defaultPinnedCertificates]];
 }
 
-+ (instancetype)policyWithPinningMode:(AFSSLPinningMode)pinningMode withPinnedCertificates:(NSSet *)pinnedCertificates {
+// 初始化
++ (instancetype)policyWithPinningMode:(AFSSLPinningMode)pinningMode
+               withPinnedCertificates:(NSSet *)pinnedCertificates {
     AFSecurityPolicy *securityPolicy = [[self alloc] init];
     securityPolicy.SSLPinningMode = pinningMode;
 
@@ -189,41 +199,49 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
     return securityPolicy;
 }
 
+// 初始化
 - (instancetype)init {
     self = [super init];
     if (!self) {
         return nil;
     }
 
+    // 是否需要验证域名，默认为YES
     self.validatesDomainName = YES;
 
     return self;
 }
 
+/// 设置固定证书集合
 - (void)setPinnedCertificates:(NSSet *)pinnedCertificates {
     _pinnedCertificates = pinnedCertificates;
 
     if (self.pinnedCertificates) {
         NSMutableSet *mutablePinnedPublicKeys = [NSMutableSet setWithCapacity:[self.pinnedCertificates count]];
         for (NSData *certificate in self.pinnedCertificates) {
+            // 遍历获取证书公钥
             id publicKey = AFPublicKeyForCertificate(certificate);
             if (!publicKey) {
                 continue;
             }
             [mutablePinnedPublicKeys addObject:publicKey];
         }
+        // 固定证书公钥
         self.pinnedPublicKeys = [NSSet setWithSet:mutablePinnedPublicKeys];
     } else {
         self.pinnedPublicKeys = nil;
     }
 }
 
-#pragma mark -
+#pragma mark - 校验证书
 
+// iOS https证书双向认证的实现机制: https://blog.csdn.net/Z1591090/article/details/104041998
+
+// ZJH tag 校验证书
 - (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust
-                  forDomain:(NSString *)domain
-{
-    if (domain && self.allowInvalidCertificates && self.validatesDomainName && (self.SSLPinningMode == AFSSLPinningModeNone || [self.pinnedCertificates count] == 0)) {
+                  forDomain:(NSString *)domain {
+    if (domain && self.allowInvalidCertificates && self.validatesDomainName &&
+        (self.SSLPinningMode == AFSSLPinningModeNone || [self.pinnedCertificates count] == 0)) {
         // https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NetworkingTopics/Articles/OverridingSSLChainValidationCorrectly.html
         //  According to the docs, you should only trust your provided certs for evaluation.
         //  Pinned certificates are added to the trust. Without pinned certificates,
@@ -238,35 +256,51 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
 
     NSMutableArray *policies = [NSMutableArray array];
     if (self.validatesDomainName) {
+        // 设置ssl政策来检测主域名
         [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)domain)];
     } else {
         [policies addObject:(__bridge_transfer id)SecPolicyCreateBasicX509()];
     }
-
+    // 设置校验的参考依据
     SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
 
+    // 无校验模式
     if (self.SSLPinningMode == AFSSLPinningModeNone) {
+        // AFServerTrustIsValid(serverTrust); 系统API，基于上述的参考依据，得到证书的最终校验结果。
         return self.allowInvalidCertificates || AFServerTrustIsValid(serverTrust);
-    } else if (!AFServerTrustIsValid(serverTrust) && !self.allowInvalidCertificates) {
+    }
+    else if (!AFServerTrustIsValid(serverTrust) && !self.allowInvalidCertificates) {
         return NO;
     }
 
     switch (self.SSLPinningMode) {
+            // 证书校验模式：获取https证书链上的每一级证书，将各个证书都作为校验的参考依据。（简单说就是会校验整个证书链）
         case AFSSLPinningModeCertificate: {
+            // 全部校验（nsbundle .cer）
             NSMutableArray *pinnedCertificates = [NSMutableArray array];
-            for (NSData *certificateData in self.pinnedCertificates) {
-                [pinnedCertificates addObject:(__bridge_transfer id)SecCertificateCreateWithData(NULL, (__bridge CFDataRef)certificateData)];
+            /* 把证书data，用系统api转成 SecCertificateRef 类型的数据,SecCertificateCreateWithData函数
+               对原先的pinnedCertificates做一些处理，保证返回的证书都是DER编码的X.509证书 */
+            for (NSData *cerData in self.pinnedCertificates) {
+                id cerObj = (__bridge_transfer id)SecCertificateCreateWithData(NULL, (__bridge CFDataRef)cerData);
+                [pinnedCertificates addObject:cerObj];
             }
+            
+            /* 将 pinnedCertificates 设置成需要参与验证的 Anchor Certificate
+              （ 锚点证书，通过SecTrustSetAnchorCertificates设置了参与校验锚点证书之后，假如验证的数字证书是这个锚点证书的子节点，
+                即验证的数字证书是由锚点证书对应CA或子CA签发的，或是该证书本身，则信任该证书 ），具体就是调用SecTrustEvaluate来验证。
+                serverTrust是服务器来的验证，有需要被验证的证书。 */
             SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)pinnedCertificates);
-
+            // 上步先把本地证书设置为根证书，这步再去验证证书
             if (!AFServerTrustIsValid(serverTrust)) {
                 return NO;
             }
 
-            // obtain the chain after being validated, which *should* contain the pinned certificate in the last position (if it's the Root CA)
+            /* 注意，这个方法和我们之前的锚点证书没关系了，是去从我们需要被验证的服务端证书，去拿证书链。
+               服务器端的证书链，注意此处返回的证书链顺序是从叶节点到根节点。返回所有服务器返回的证书信息 */
             NSArray *serverCertificates = AFCertificateTrustChainForServerTrust(serverTrust);
-            
+            /* 如果我们的证书中，有一个和它证书链中的证书匹配的，就返回YES */
             for (NSData *trustChainCertificate in [serverCertificates reverseObjectEnumerator]) {
+                // 是否本地包含相同的data
                 if ([self.pinnedCertificates containsObject:trustChainCertificate]) {
                     return YES;
                 }
@@ -274,13 +308,17 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
             
             return NO;
         }
+            // 公钥校验模式：客户端本地内置证书白名单。获取访问域名证书链上的每一级证书的公钥 校验公钥是否正确
         case AFSSLPinningModePublicKey: {
             NSUInteger trustedPublicKeyCount = 0;
+            // 从serverTrust中取出服务器端传过来的所有可用的证书，并依次得到相应的公钥
             NSArray *publicKeys = AFPublicKeyTrustChainForServerTrust(serverTrust);
-
+            // 遍历服务端公钥
             for (id trustChainPublicKey in publicKeys) {
                 for (id pinnedPublicKey in self.pinnedPublicKeys) {
-                    if (AFSecKeyIsEqualToKey((__bridge SecKeyRef)trustChainPublicKey, (__bridge SecKeyRef)pinnedPublicKey)) {
+                    // 判断如果相同 trustedPublicKeyCount+1
+                    if (AFSecKeyIsEqualToKey((__bridge SecKeyRef)trustChainPublicKey,
+                                             (__bridge SecKeyRef)pinnedPublicKey)) {
                         trustedPublicKeyCount += 1;
                     }
                 }
