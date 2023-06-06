@@ -10,6 +10,8 @@
 #import "URLSessionController.h"
 #import "AFNetworkingController.h"
 #import "ZJHCertificateTool.h"
+#import "ZJHOpenSSLTool.h"
+#import "GMEllipticCurveCrypto.h"
 
 
 @interface ViewController ()
@@ -30,7 +32,12 @@
                       @"iOS代码生成CSR文件",
                       @"获取证书公钥",
                       @"获取证书私钥",
-                      @"证书校验"];
+                      @"证书校验",
+                      @"OpenSSL生成密钥对",
+                      @"OpenSSL的ECDH方法",
+                      @"GMEllipticCurveCrypto生成密钥对",
+                      @"GMEllipticCurveCrypto的ECDH方法",
+                      @"两种ECDH方法的校验" ];
     
     //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
     //    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
@@ -85,6 +92,27 @@
             [self demoValidCertificate];
         }
             break;
+        case 7: { // OpenSSL生成密钥对
+            [self demoOpenSSLGenerateEccKeyPair];
+        }
+            break;
+        case 8: { // OpenSSL的ECDH方法
+            [self demoOpenSSLECDH];
+        }
+            break;
+        case 9: { // OpenSSL生成密钥对
+            [self demoGMEllipticCurveCryptoGenerateEccKeyPair];
+        }
+            break;
+        case 10: { // OpenSSL的ECDH方法
+            [self demoGMEllipticCurveCryptoECDH];
+        }
+            break;
+        case 11: { // 两种ECDH方法的校验
+            [self demoValidECDH];
+        }
+            break;
+            
         default:
             break;
     }
@@ -175,6 +203,158 @@
 - (NSString *)resultNSStringToBase64:(NSData *)baseStr{
     NSString * Base64Str  = [baseStr base64EncodedStringWithOptions:0];
     return Base64Str;
+}
+
+
+/// OpenSSL生成密钥对
+- (void)demoOpenSSLGenerateEccKeyPair {
+    NSArray *arr = [ZJHOpenSSLTool generateEccKeyPair];
+    NSLog(@"pub : %@", arr.lastObject);
+    NSLog(@"pri : %@", arr.firstObject);
+    NSString *pubStr = [self hexDataToNSString:arr.lastObject];
+    NSString *priStr = [self hexDataToNSString:arr.firstObject];
+    NSLog(@"pubStr : %@", pubStr);
+    NSLog(@"priStr : %@", priStr);
+    NSLog(@"");
+}
+
+/// OpenSSL的ECDH方法
+- (void)demoOpenSSLECDH {
+    /* 公钥：04E3517069E8D411FDD070C9141B4C22A7B29628CE9988689CB38B148F426376BBA00ECA56E3B641C9B349A6DC64BC20F916D71CBE95D28490C82F079C6BBFECFE
+     私钥：C77337BB1EEDBA2B9C8C366E6EE525788156D90771CF51742D9CBFDAEEE52326
+     协商结果：9B9E0AAD7D0FE03BD9BC326DABB44B1C1FC547B8FD0708F6C1C15075001B7B7F
+     */
+    NSString *pubStr = @"04E3517069E8D411FDD070C9141B4C22A7B29628CE9988689CB38B148F426376BBA00ECA56E3B641C9B349A6DC64BC20F916D71CBE95D28490C82F079C6BBFECFE";
+    NSString *priStr = @"C77337BB1EEDBA2B9C8C366E6EE525788156D90771CF51742D9CBFDAEEE52326";
+    
+    NSData *keyData1 =  [ZJHOpenSSLTool computeECDHWithPublicKey:pubStr privateKey:priStr];
+    NSLog(@"***ZJH keyData1 : %@", keyData1);
+    NSString *keyDataStr = [self hexDataToNSString:keyData1];
+    NSLog(@"***ZJH keyDataStr : %@", keyDataStr);
+    NSLog(@"");
+}
+
+
+/// GMEllipticCurveCrypto生成密钥对
+- (void)demoGMEllipticCurveCryptoGenerateEccKeyPair {
+    // 公钥长度相关问题：https://stackoverflow.com/questions/69402678/swift-generate-shared-key-using-ecdh
+    
+    GMEllipticCurveCrypto *crypto =
+    [GMEllipticCurveCrypto generateKeyPairForCurve:GMEllipticCurveSecp256r1];
+    NSData *pub1 = crypto.publicKey; // 32位公钥
+    NSData *pub2 = [crypto decompressPublicKey:pub1]; // 还原成65位公钥
+    NSLog(@"Public Key data1: %@", pub1);
+    NSLog(@"Public Key data2: %@", pub2);
+    
+    NSLog(@"Private Key data: %@", crypto.privateKey);
+    NSLog(@"Public Key: %@", crypto.publicKeyBase64);
+    NSLog(@"Private Key: %@", crypto.privateKeyBase64);
+    NSLog(@"");
+    
+    /* 服务器和客户端公钥均采用非压缩模式，因为均以04开头
+       双方采用secp256r1，所以生成公钥长度都为65字节，包括1字节压缩提示，32字节x坐标，32字节y坐标
+       最终双方获得相同的共享密钥，共享密钥仅包括x坐标，所以长度是32字节 */
+}
+
+/// GMEllipticCurveCrypto的ECDH方法
+- (void)demoGMEllipticCurveCryptoECDH {
+    /* 公钥：04E3517069E8D411FDD070C9141B4C22A7B29628CE9988689CB38B148F426376BBA00ECA56E3B641C9B349A6DC64BC20F916D71CBE95D28490C82F079C6BBFECFE
+     私钥：C77337BB1EEDBA2B9C8C366E6EE525788156D90771CF51742D9CBFDAEEE52326
+     协商结果：9B9E0AAD7D0FE03BD9BC326DABB44B1C1FC547B8FD0708F6C1C15075001B7B7F
+     */
+    NSString *pubStr = @"04E3517069E8D411FDD070C9141B4C22A7B29628CE9988689CB38B148F426376BBA00ECA56E3B641C9B349A6DC64BC20F916D71CBE95D28490C82F079C6BBFECFE";
+    NSString *priStr = @"C77337BB1EEDBA2B9C8C366E6EE525788156D90771CF51742D9CBFDAEEE52326";
+    NSData *pubData = [self dataFromHexString:pubStr];
+    NSData *priData = [self dataFromHexString:priStr];
+    
+    // Alice performs...
+    GMEllipticCurveCrypto *alice =
+    [GMEllipticCurveCrypto cryptoForCurve: GMEllipticCurveSecp256r1];
+    alice.privateKey = priData;
+    NSData *pubData2 = [alice compressPublicKey:pubData]; // 压缩公钥
+    NSData *shareKey = [alice sharedSecretForPublicKey:pubData2];
+    NSLog(@"Shared Secret: %@", shareKey);
+    NSString *shareKeyStr = [self hexDataToNSString:shareKey];
+    NSLog(@"***ZJH keyDataStr : %@", shareKeyStr);
+    NSLog(@"");
+}
+
+/// 两种ECDH方法的校验
+- (void)demoValidECDH {
+    NSArray *arr = [ZJHOpenSSLTool generateEccKeyPair];
+    NSData *alicePubData65 = arr.lastObject; // 65位
+    NSData *alicePriData = arr.firstObject;
+    
+    GMEllipticCurveCrypto *crypto =
+    [GMEllipticCurveCrypto generateKeyPairForCurve:GMEllipticCurveSecp256r1];
+    NSData *bobPubdata32 = crypto.publicKey; // 32位公钥
+    NSData *bobPubdata65 = [crypto decompressPublicKey:bobPubdata32]; // 还原成65位公钥
+    NSData *bobPriData = crypto.privateKey;
+    
+    GMEllipticCurveCrypto *alice =
+    [GMEllipticCurveCrypto cryptoForCurve: GMEllipticCurveSecp256r1];
+    alice.privateKey = alicePriData;
+    NSData *aliceShareKey = [alice sharedSecretForPublicKey:bobPubdata32];
+    NSLog(@"Shared Secret Alice: %@", aliceShareKey);
+    
+    NSData *bobShareKey =  [ZJHOpenSSLTool computeECDHWithPublicKeyData:alicePubData65
+                                                         privateKeyData:bobPriData];
+    NSLog(@"Shared Secret Bob: %@", bobShareKey);
+    
+    BOOL isSucc = [aliceShareKey isEqualToData:bobShareKey];
+    if (isSucc) {
+        NSLog(@"密钥协商成功");
+    } else {
+        NSLog(@"密钥协商失败");
+    }
+}
+
+
+- (NSData *)dataFromHexString:(NSString *)string {
+    if (!string) {
+        return nil;
+    }
+    string = [string lowercaseString];
+    NSMutableData *data= [NSMutableData new];
+    unsigned char whole_byte;
+    char byte_chars[3] = {'\0','\0','\0'};
+    int i = 0;
+    NSUInteger length = string.length;
+    if (length == 0) {
+        return nil;
+    }
+    while (i < length-1) {
+        char c = [string characterAtIndex:i++];
+        if (c < '0' || (c > '9' && c < 'a') || c > 'f')
+            continue;
+        byte_chars[0] = c;
+        byte_chars[1] = [string characterAtIndex:i++];
+        whole_byte = strtol(byte_chars, NULL, 16);
+        [data appendBytes:&whole_byte length:1];
+    }
+    return data;
+}
+
+- (NSString *)hexDataToNSString:(NSData *)hexData
+{
+    NSMutableString *hexString = [NSMutableString stringWithString:@""];
+    
+    if (hexData.length > 0)
+    {
+        hexString = [NSMutableString stringWithCapacity:hexData.length * 3];
+        
+        [hexData enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
+            
+            for (NSUInteger offset = 0; offset < byteRange.length; offset++)
+            {
+                uint8_t byte = ((const uint8_t *)bytes)[offset];
+                
+                [hexString appendFormat:@"%02X", byte];
+            }
+        }];
+    }
+    
+    return hexString;
 }
 
 

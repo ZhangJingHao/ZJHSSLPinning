@@ -27,28 +27,30 @@
 		210CE24A2A272CEA00E81667 /* client.key in Resources */ = {isa = PBXBuildFile; fileRef = 210CE2372A272CEA00E81667 /* client.key */; };
 		210CE24C2A2732EE00E81667 /* ca.cer in Resources */ = {isa = PBXBuildFile; fileRef = 210CE24B2A2732EE00E81667 /* ca.cer */; };
 		210CE24E2A27357B00E81667 /* client.cer in Resources */ = {isa = PBXBuildFile; fileRef = 210CE24D2A27357B00E81667 /* client.cer */; };
-		210CE2512A2741A400E81667 /* SCCSR.m in Sources */ = {isa = PBXBuildFile; fileRef = 210CE24F2A2741A300E81667 /* SCCSR.m */; };
 		210CE2552A2750A900E81667 /* codegenerate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 210CE2542A2750A900E81667 /* codegenerate.cer */; };
 		2116DE3F2A2D85B000C397B6 /* github2023.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2116DE3C2A2D85AF00C397B6 /* github2023.cer */; };
 		2116DE402A2D85B000C397B6 /* github2018.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2116DE3D2A2D85AF00C397B6 /* github2018.cer */; };
 		2116DE412A2D85B000C397B6 /* github2020.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2116DE3E2A2D85B000C397B6 /* github2020.cer */; };
 		2116DE432A2D8A5900C397B6 /* server.pem in Resources */ = {isa = PBXBuildFile; fileRef = 2116DE422A2D8A5900C397B6 /* server.pem */; };
 		2116DE452A2D8A6700C397B6 /* private_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 2116DE442A2D8A6700C397B6 /* private_key.pem */; };
+		2116DE4B2A2DBAD500C397B6 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2116DE4A2A2DBAD500C397B6 /* openssl.framework */; };
+		2116DE502A2DBB1C00C397B6 /* GMEllipticCurveCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE4C2A2DBB1C00C397B6 /* GMEllipticCurveCrypto.m */; };
+		2116DE512A2DBB1C00C397B6 /* GMEllipticCurveCrypto+hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE4F2A2DBB1C00C397B6 /* GMEllipticCurveCrypto+hash.m */; };
+		2116DE612A2DBB2500C397B6 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE572A2DBB2500C397B6 /* AFURLResponseSerialization.m */; };
+		2116DE622A2DBB2500C397B6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE582A2DBB2500C397B6 /* AFHTTPSessionManager.m */; };
+		2116DE632A2DBB2500C397B6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE5A2A2DBB2500C397B6 /* AFURLSessionManager.m */; };
+		2116DE642A2DBB2500C397B6 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE5B2A2DBB2500C397B6 /* AFURLRequestSerialization.m */; };
+		2116DE652A2DBB2500C397B6 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE5D2A2DBB2500C397B6 /* AFNetworkReachabilityManager.m */; };
+		2116DE662A2DBB2500C397B6 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE5E2A2DBB2500C397B6 /* AFSecurityPolicy.m */; };
+		2116DE692A2DBB2E00C397B6 /* SCCSR.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE672A2DBB2E00C397B6 /* SCCSR.m */; };
+		2116DE6C2A2DBB8A00C397B6 /* ZJHOpenSSLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2116DE6B2A2DBB8A00C397B6 /* ZJHOpenSSLTool.m */; };
 		21D196782A283FA50041BF02 /* ZJHCertificateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D196772A283FA50041BF02 /* ZJHCertificateTool.m */; };
-		21D1967D2A2873F30041BF02 /* GMEllipticCurveCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D196792A2873F20041BF02 /* GMEllipticCurveCrypto.m */; };
-		21D1967E2A2873F30041BF02 /* GMEllipticCurveCrypto+hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D1967C2A2873F30041BF02 /* GMEllipticCurveCrypto+hash.m */; };
 		FACB56CB2295603300F8FD50 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56CA2295603300F8FD50 /* AppDelegate.m */; };
 		FACB56CE2295603300F8FD50 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56CD2295603300F8FD50 /* ViewController.m */; };
 		FACB56D12295603300F8FD50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACB56CF2295603300F8FD50 /* Main.storyboard */; };
 		FACB56D32295603500F8FD50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACB56D22295603500F8FD50 /* Assets.xcassets */; };
 		FACB56D62295603500F8FD50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACB56D42295603500F8FD50 /* LaunchScreen.storyboard */; };
 		FACB56D92295603500F8FD50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56D82295603500F8FD50 /* main.m */; };
-		FACB56EE2295611200F8FD50 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56E42295611200F8FD50 /* AFURLResponseSerialization.m */; };
-		FACB56EF2295611200F8FD50 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56E52295611200F8FD50 /* AFHTTPSessionManager.m */; };
-		FACB56F02295611200F8FD50 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56E72295611200F8FD50 /* AFURLSessionManager.m */; };
-		FACB56F12295611200F8FD50 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56E82295611200F8FD50 /* AFURLRequestSerialization.m */; };
-		FACB56F22295611200F8FD50 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56EA2295611200F8FD50 /* AFNetworkReachabilityManager.m */; };
-		FACB56F32295611200F8FD50 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56EB2295611200F8FD50 /* AFSecurityPolicy.m */; };
 		FACB56F62295618500F8FD50 /* URLSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56F52295618500F8FD50 /* URLSessionController.m */; };
 		FACB56F9229561A500F8FD50 /* AFNetworkingController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB56F8229561A500F8FD50 /* AFNetworkingController.m */; };
 /* End PBXBuildFile section */
@@ -74,20 +76,37 @@
 		210CE2372A272CEA00E81667 /* client.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = client.key; sourceTree = "<group>"; };
 		210CE24B2A2732EE00E81667 /* ca.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = ca.cer; sourceTree = "<group>"; };
 		210CE24D2A27357B00E81667 /* client.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = client.cer; path = ../../../../../CustomCA/client.cer; sourceTree = "<group>"; };
-		210CE24F2A2741A300E81667 /* SCCSR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCSR.m; sourceTree = "<group>"; };
-		210CE2502A2741A400E81667 /* SCCSR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCSR.h; sourceTree = "<group>"; };
 		210CE2542A2750A900E81667 /* codegenerate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = codegenerate.cer; sourceTree = "<group>"; };
 		2116DE3C2A2D85AF00C397B6 /* github2023.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = github2023.cer; sourceTree = "<group>"; };
 		2116DE3D2A2D85AF00C397B6 /* github2018.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = github2018.cer; sourceTree = "<group>"; };
 		2116DE3E2A2D85B000C397B6 /* github2020.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = github2020.cer; sourceTree = "<group>"; };
 		2116DE422A2D8A5900C397B6 /* server.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.pem; sourceTree = "<group>"; };
 		2116DE442A2D8A6700C397B6 /* private_key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = private_key.pem; sourceTree = "<group>"; };
+		2116DE4A2A2DBAD500C397B6 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
+		2116DE4C2A2DBB1C00C397B6 /* GMEllipticCurveCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMEllipticCurveCrypto.m; sourceTree = "<group>"; };
+		2116DE4D2A2DBB1C00C397B6 /* GMEllipticCurveCrypto+hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMEllipticCurveCrypto+hash.h"; sourceTree = "<group>"; };
+		2116DE4E2A2DBB1C00C397B6 /* GMEllipticCurveCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMEllipticCurveCrypto.h; sourceTree = "<group>"; };
+		2116DE4F2A2DBB1C00C397B6 /* GMEllipticCurveCrypto+hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GMEllipticCurveCrypto+hash.m"; sourceTree = "<group>"; };
+		2116DE532A2DBB2500C397B6 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		2116DE542A2DBB2500C397B6 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		2116DE552A2DBB2500C397B6 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		2116DE562A2DBB2500C397B6 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		2116DE572A2DBB2500C397B6 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		2116DE582A2DBB2500C397B6 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		2116DE592A2DBB2500C397B6 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		2116DE5A2A2DBB2500C397B6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		2116DE5B2A2DBB2500C397B6 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		2116DE5C2A2DBB2500C397B6 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		2116DE5D2A2DBB2500C397B6 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		2116DE5E2A2DBB2500C397B6 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		2116DE5F2A2DBB2500C397B6 /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
+		2116DE602A2DBB2500C397B6 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		2116DE672A2DBB2E00C397B6 /* SCCSR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCSR.m; sourceTree = "<group>"; };
+		2116DE682A2DBB2E00C397B6 /* SCCSR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCSR.h; sourceTree = "<group>"; };
+		2116DE6A2A2DBB8A00C397B6 /* ZJHOpenSSLTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHOpenSSLTool.h; sourceTree = "<group>"; };
+		2116DE6B2A2DBB8A00C397B6 /* ZJHOpenSSLTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJHOpenSSLTool.m; sourceTree = "<group>"; };
 		21D196762A283FA50041BF02 /* ZJHCertificateTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHCertificateTool.h; sourceTree = "<group>"; };
 		21D196772A283FA50041BF02 /* ZJHCertificateTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJHCertificateTool.m; sourceTree = "<group>"; };
-		21D196792A2873F20041BF02 /* GMEllipticCurveCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMEllipticCurveCrypto.m; sourceTree = "<group>"; };
-		21D1967A2A2873F30041BF02 /* GMEllipticCurveCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMEllipticCurveCrypto.h; sourceTree = "<group>"; };
-		21D1967B2A2873F30041BF02 /* GMEllipticCurveCrypto+hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMEllipticCurveCrypto+hash.h"; sourceTree = "<group>"; };
-		21D1967C2A2873F30041BF02 /* GMEllipticCurveCrypto+hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GMEllipticCurveCrypto+hash.m"; sourceTree = "<group>"; };
 		FACB56C62295603300F8FD50 /* SSLPinningDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSLPinningDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACB56C92295603300F8FD50 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FACB56CA2295603300F8FD50 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -98,20 +117,6 @@
 		FACB56D52295603500F8FD50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FACB56D72295603500F8FD50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FACB56D82295603500F8FD50 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FACB56E02295611200F8FD50 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		FACB56E12295611200F8FD50 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		FACB56E22295611200F8FD50 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		FACB56E32295611200F8FD50 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		FACB56E42295611200F8FD50 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		FACB56E52295611200F8FD50 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		FACB56E62295611200F8FD50 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		FACB56E72295611200F8FD50 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		FACB56E82295611200F8FD50 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		FACB56E92295611200F8FD50 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		FACB56EA2295611200F8FD50 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		FACB56EB2295611200F8FD50 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		FACB56EC2295611200F8FD50 /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
-		FACB56ED2295611200F8FD50 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		FACB56F42295618500F8FD50 /* URLSessionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLSessionController.h; sourceTree = "<group>"; };
 		FACB56F52295618500F8FD50 /* URLSessionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLSessionController.m; sourceTree = "<group>"; };
 		FACB56F7229561A500F8FD50 /* AFNetworkingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFNetworkingController.h; sourceTree = "<group>"; };
@@ -123,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2116DE4B2A2DBAD500C397B6 /* openssl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +184,42 @@
 			path = newcerts;
 			sourceTree = "<group>";
 		};
+		2116DE492A2DBAD500C397B6 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				2116DE522A2DBB2500C397B6 /* AFNetworking */,
+				2116DE4E2A2DBB1C00C397B6 /* GMEllipticCurveCrypto.h */,
+				2116DE4C2A2DBB1C00C397B6 /* GMEllipticCurveCrypto.m */,
+				2116DE4D2A2DBB1C00C397B6 /* GMEllipticCurveCrypto+hash.h */,
+				2116DE4F2A2DBB1C00C397B6 /* GMEllipticCurveCrypto+hash.m */,
+				2116DE682A2DBB2E00C397B6 /* SCCSR.h */,
+				2116DE672A2DBB2E00C397B6 /* SCCSR.m */,
+				2116DE4A2A2DBAD500C397B6 /* openssl.framework */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		2116DE522A2DBB2500C397B6 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				2116DE532A2DBB2500C397B6 /* AFSecurityPolicy.h */,
+				2116DE542A2DBB2500C397B6 /* AFNetworkReachabilityManager.h */,
+				2116DE552A2DBB2500C397B6 /* AFURLSessionManager.h */,
+				2116DE562A2DBB2500C397B6 /* AFURLRequestSerialization.h */,
+				2116DE572A2DBB2500C397B6 /* AFURLResponseSerialization.m */,
+				2116DE582A2DBB2500C397B6 /* AFHTTPSessionManager.m */,
+				2116DE592A2DBB2500C397B6 /* AFURLResponseSerialization.h */,
+				2116DE5A2A2DBB2500C397B6 /* AFURLSessionManager.m */,
+				2116DE5B2A2DBB2500C397B6 /* AFURLRequestSerialization.m */,
+				2116DE5C2A2DBB2500C397B6 /* AFNetworking.h */,
+				2116DE5D2A2DBB2500C397B6 /* AFNetworkReachabilityManager.m */,
+				2116DE5E2A2DBB2500C397B6 /* AFSecurityPolicy.m */,
+				2116DE5F2A2DBB2500C397B6 /* AFCompatibilityMacros.h */,
+				2116DE602A2DBB2500C397B6 /* AFHTTPSessionManager.h */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 		FACB56BD2295603300F8FD50 = {
 			isa = PBXGroup;
 			children = (
@@ -197,7 +239,7 @@
 		FACB56C82295603300F8FD50 /* SSLPinningDemo */ = {
 			isa = PBXGroup;
 			children = (
-				FACB56DF2295611200F8FD50 /* AFNetworking */,
+				2116DE492A2DBAD500C397B6 /* Vendors */,
 				FACB56C92295603300F8FD50 /* AppDelegate.h */,
 				FACB56CA2295603300F8FD50 /* AppDelegate.m */,
 				FACB56CC2295603300F8FD50 /* ViewController.h */,
@@ -208,12 +250,8 @@
 				FACB56F8229561A500F8FD50 /* AFNetworkingController.m */,
 				21D196762A283FA50041BF02 /* ZJHCertificateTool.h */,
 				21D196772A283FA50041BF02 /* ZJHCertificateTool.m */,
-				210CE2502A2741A400E81667 /* SCCSR.h */,
-				210CE24F2A2741A300E81667 /* SCCSR.m */,
-				21D1967A2A2873F30041BF02 /* GMEllipticCurveCrypto.h */,
-				21D196792A2873F20041BF02 /* GMEllipticCurveCrypto.m */,
-				21D1967B2A2873F30041BF02 /* GMEllipticCurveCrypto+hash.h */,
-				21D1967C2A2873F30041BF02 /* GMEllipticCurveCrypto+hash.m */,
+				2116DE6A2A2DBB8A00C397B6 /* ZJHOpenSSLTool.h */,
+				2116DE6B2A2DBB8A00C397B6 /* ZJHOpenSSLTool.m */,
 				210CE2222A272CEA00E81667 /* CustomCA */,
 				FACB56CF2295603300F8FD50 /* Main.storyboard */,
 				FACB56D22295603500F8FD50 /* Assets.xcassets */,
@@ -222,27 +260,6 @@
 				FACB56D82295603500F8FD50 /* main.m */,
 			);
 			path = SSLPinningDemo;
-			sourceTree = "<group>";
-		};
-		FACB56DF2295611200F8FD50 /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				FACB56E92295611200F8FD50 /* AFNetworking.h */,
-				FACB56EC2295611200F8FD50 /* AFCompatibilityMacros.h */,
-				FACB56ED2295611200F8FD50 /* AFHTTPSessionManager.h */,
-				FACB56E52295611200F8FD50 /* AFHTTPSessionManager.m */,
-				FACB56E12295611200F8FD50 /* AFNetworkReachabilityManager.h */,
-				FACB56EA2295611200F8FD50 /* AFNetworkReachabilityManager.m */,
-				FACB56E02295611200F8FD50 /* AFSecurityPolicy.h */,
-				FACB56EB2295611200F8FD50 /* AFSecurityPolicy.m */,
-				FACB56E32295611200F8FD50 /* AFURLRequestSerialization.h */,
-				FACB56E82295611200F8FD50 /* AFURLRequestSerialization.m */,
-				FACB56E42295611200F8FD50 /* AFURLResponseSerialization.m */,
-				FACB56E62295611200F8FD50 /* AFURLResponseSerialization.h */,
-				FACB56E22295611200F8FD50 /* AFURLSessionManager.h */,
-				FACB56E72295611200F8FD50 /* AFURLSessionManager.m */,
-			);
-			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,7 +289,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = ZhangJingHao48;
+				ORGANIZATIONNAME = ZJH;
 				TargetAttributes = {
 					FACB56C52295603300F8FD50 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -341,19 +358,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2116DE692A2DBB2E00C397B6 /* SCCSR.m in Sources */,
 				FACB56CE2295603300F8FD50 /* ViewController.m in Sources */,
-				FACB56F32295611200F8FD50 /* AFSecurityPolicy.m in Sources */,
+				2116DE662A2DBB2500C397B6 /* AFSecurityPolicy.m in Sources */,
 				FACB56D92295603500F8FD50 /* main.m in Sources */,
-				FACB56EF2295611200F8FD50 /* AFHTTPSessionManager.m in Sources */,
-				FACB56F02295611200F8FD50 /* AFURLSessionManager.m in Sources */,
-				21D1967E2A2873F30041BF02 /* GMEllipticCurveCrypto+hash.m in Sources */,
-				210CE2512A2741A400E81667 /* SCCSR.m in Sources */,
-				FACB56EE2295611200F8FD50 /* AFURLResponseSerialization.m in Sources */,
+				2116DE512A2DBB1C00C397B6 /* GMEllipticCurveCrypto+hash.m in Sources */,
+				2116DE502A2DBB1C00C397B6 /* GMEllipticCurveCrypto.m in Sources */,
+				2116DE612A2DBB2500C397B6 /* AFURLResponseSerialization.m in Sources */,
+				2116DE622A2DBB2500C397B6 /* AFHTTPSessionManager.m in Sources */,
+				2116DE642A2DBB2500C397B6 /* AFURLRequestSerialization.m in Sources */,
 				FACB56F62295618500F8FD50 /* URLSessionController.m in Sources */,
-				FACB56F12295611200F8FD50 /* AFURLRequestSerialization.m in Sources */,
-				21D1967D2A2873F30041BF02 /* GMEllipticCurveCrypto.m in Sources */,
+				2116DE6C2A2DBB8A00C397B6 /* ZJHOpenSSLTool.m in Sources */,
 				21D196782A283FA50041BF02 /* ZJHCertificateTool.m in Sources */,
-				FACB56F22295611200F8FD50 /* AFNetworkReachabilityManager.m in Sources */,
+				2116DE652A2DBB2500C397B6 /* AFNetworkReachabilityManager.m in Sources */,
+				2116DE632A2DBB2500C397B6 /* AFURLSessionManager.m in Sources */,
 				FACB56F9229561A500F8FD50 /* AFNetworkingController.m in Sources */,
 				FACB56CB2295603300F8FD50 /* AppDelegate.m in Sources */,
 			);
@@ -502,6 +520,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SSLPinningDemo",
+					"$(PROJECT_DIR)/SSLPinningDemo/Vendors",
 				);
 				INFOPLIST_FILE = SSLPinningDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -513,7 +532,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SSLPinningDemo/openssl",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.msmart.meiju.inhouse;
+				PRODUCT_BUNDLE_IDENTIFIER = zjh.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = meiju_inhouse_dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -529,6 +548,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SSLPinningDemo",
+					"$(PROJECT_DIR)/SSLPinningDemo/Vendors",
 				);
 				INFOPLIST_FILE = SSLPinningDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -540,7 +560,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SSLPinningDemo/openssl",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.msmart.meiju.inhouse;
+				PRODUCT_BUNDLE_IDENTIFIER = zjh.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
